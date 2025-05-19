@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Команда проекта</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-dark: #0a0e23;
+            --space-darker: #050816;
+            --neon-blue: #00f0ff;
+            --neon-purple: #b400ff;
+            --cosmic-pink: #ff00aa;
+            --star-light: #e0e0ff;
+            --space-gray: #1a1d35;
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+        }
+        /* ... (весь остальной CSS из Команда проекта.html) ... */
+    </style>
+</head>
+<body>
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+    <div id="mySidebar" class="sidebar">
+        <button class="closebtn" onclick="closeSidebar()">×</button>
+        <div class="auth-buttons">
+            <a href="register.html" class="btn register">Регистрация</a>
+            <a href="login.html" class="btn login">Войти</a>
+        </div>
+        <a href="index.html">Главная</a>
+        <a href="chat.html">Общение с ботом</a>
+        <a href="team.html">Состав компании</a>
+        <a href="reviews.html">Написать отзыв</a>
+        <a href="support.html">Тех поддержка</a>
+    </div>
+
+    <button class="openbtn floating" onclick="openSidebar()">☰ Меню</button>
+
+    <div class="main-content">
+        <div class="header floating">
+            <h1>КОМАНДА ПРОЕКТА</h1>
+            <p>Наша команда профессионалов, работающих для вашего будущего</p>
+        </div>
+        <div class="content-section">
+            <h2>Наша команда</h2>
+            <p>Мы — команда энтузиастов, объединенных общей целью: помочь вам найти свой путь в этом сложном мире. Каждый член нашей команды вносит свой уникальный вклад в создание FUTURE TALK.</p>
+            <div class="team-grid">
+                <!-- Никита Сердюков -->
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="avatar-inner">НС</div>
+                        <div class="team-role" title="Разработчик"><i class="fas fa-code"></i></div>
+                    </div>
+                    <h3>Никита Сердюков</h3>
+                    <p>Главный разработчик. Отвечает за архитектуру проекта и внедрение новых технологий.</p>
+                </div>
+                <!-- Юмачиков Марат -->
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="avatar-inner">ЮМ</div>
+                        <div class="team-role" title="Дизайнер"><i class="fas fa-paint-brush"></i></div>
+                    </div>
+                    <h3>Юмачиков Марат</h3>
+                    <p>Креативный дизайнер. Создает визуальную идентичность проекта и пользовательские интерфейсы.</p>
+                </div>
+                <!-- Новосад Анастасия -->
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="avatar-inner">НА</div>
+                        <div class="team-role" title="Контент"><i class="fas fa-pen-fancy"></i></div>
+                    </div>
+                    <h3>Новосад Анастасия</h3>
+                    <p>Руководитель контент-отдела. Отвечает за поиск информации и создание текстового наполнения.</p>
+                </div>
+                <!-- Митлашевский Фёдор -->
+                <div class="team-card">
+                    <div class="avatar">
+                        <div class="avatar-inner">МФ</div>
+                        <div class="team-role" title="Спикер"><i class="fas fa-microphone"></i></div>
+                    </div>
+                    <h3>Митлашевский Фёдор</h3>
+                    <p>Главный спикер проекта. Проводит презентации и представляет проект на публичных мероприятиях.</p>
+                </div>
+            </div>
+        </div>
+        <div class="content-section" style="text-align: center;">
+            <h2>Присоединяйтесь к нашему проекту!</h2>
+            <p>Если вы хотите стать частью нашей команды или просто узнать больше о FUTURE TALK, свяжитесь с нами.</p>
+            <p style="font-size: 1.1rem; margin-top: 20px;"><strong>Ваше будущее начинается здесь — с FUTURE TALK!</strong></p>
+        </div>
+    </div>
+
+    <script>
+        function openSidebar() {
+            document.getElementById("mySidebar").style.right = "0";
+            document.getElementById("sidebarOverlay").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("sidebarOverlay").style.opacity = "1";
+            }, 10);
+        }
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.right = "-300px";
+            document.getElementById("sidebarOverlay").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("sidebarOverlay").style.display = "none";
+            }, 300);
+        }
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeSidebar();
+            }
+        });
+    </script>
+</body>
+</html> 
