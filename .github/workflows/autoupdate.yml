@@ -1,0 +1,20 @@
+name: Auto Update Every 3 Minutes
+
+on:
+  schedule:
+    - cron: '*/3 * * * *' # каждые 3 минуты
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Обновить файл (пример)
+        run: echo "// обновлено $(date)" >> auto.txt
+      - name: Commit & Push
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m "Автообновление файлов"
+          git push
