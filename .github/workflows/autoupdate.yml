@@ -1,20 +1,25 @@
-name: Auto Update Every 3 Minutes
+name: Auto Update
 
 on:
   schedule:
-    - cron: '*/3 * * * *' # каждые 3 минуты
+    - cron: '* * * * *'  # Runs every minute
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v3
-      - name: Обновить файл (пример)
-        run: echo "// обновлено $(date)" >> auto.txt
-      - name: Commit & Push
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add .
-          git commit -m "Автообновление файлов"
-          git push
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        
+    - name: Configure Git
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        
+    - name: Commit and push if changes
+      run: |
+        git add .
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update: $(date)" && git push) 
