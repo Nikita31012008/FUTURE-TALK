@@ -129,4 +129,27 @@ function handleFadeIn() {
     });
 }
 window.addEventListener('scroll', handleFadeIn);
-window.addEventListener('load', handleFadeIn); 
+window.addEventListener('load', handleFadeIn);
+
+// Подсветка активного пункта меню
+if (sideMenu) {
+    const menuLinks = sideMenu.querySelectorAll('ul li');
+    menuLinks.forEach(li => {
+        li.onclick = function() {
+            menuLinks.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        };
+    });
+}
+
+// Подсветка активного пункта меню в .main-nav по URL
+const mainNav = document.querySelector('.main-nav');
+if (mainNav) {
+    const navLinks = mainNav.querySelectorAll('a');
+    const path = window.location.pathname.split('/').pop();
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === path || (path === '' && link.getAttribute('href') === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
+} 

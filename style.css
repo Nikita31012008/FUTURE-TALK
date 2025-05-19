@@ -79,13 +79,15 @@ header h1 {
     top: 0; right: -320px;
     width: 320px;
     height: 100vh;
-    background: linear-gradient(135deg, #181830 80%, #6cf 100%);
-    box-shadow: -2px 0 16px #0008;
-    transition: right 0.3s cubic-bezier(.4,2,.6,1);
+    background: linear-gradient(135deg, #10101a 80%, #23234a 100%);
+    box-shadow: -2px 0 32px #2fffd655, 0 0 24px #ff2fd655 inset;
+    border-left: 3px solid #2fffd6;
+    transition: right 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
     z-index: 1001;
     display: flex;
     flex-direction: column;
     padding: 2rem 1.5rem 1.5rem 1.5rem;
+    backdrop-filter: blur(4px) saturate(1.2);
 }
 .side-menu.open {
     right: 0;
@@ -95,35 +97,47 @@ header h1 {
     font-size: 2rem;
     background: none;
     border: none;
-    color: #fff;
+    color: #00fff7;
     cursor: pointer;
     margin-bottom: 1rem;
+    text-shadow: 0 0 8px #00fff7, 0 0 16px #ff2fd6;
+    transition: color 0.2s, text-shadow 0.2s;
 }
-.register-btn, .login-btn {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+.side-menu .close:hover {
+    color: #ff2fd6;
+    text-shadow: 0 0 16px #ff2fd6, 0 0 24px #2fffd6;
+}
+.side-menu .register-btn {
+    background: linear-gradient(90deg, #ff2fd6 0%, #ff00cc 100%);
+    color: #fff;
     font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 16px #ff2fd6cc, 0 0 8px #fff2;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.2s, background 0.2s;
 }
-.register-btn {
-    background: #ff2fd6;
+.side-menu .register-btn:hover {
+    background: linear-gradient(90deg, #ff00cc 0%, #ff2fd6 100%);
+    box-shadow: 0 0 32px #ff2fd6cc, 0 0 16px #2fffd6cc;
+}
+.side-menu .login-btn {
+    background: none;
+    color: #00fff7;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 2px solid #00fff7;
+    border-radius: 10px;
+    box-shadow: 0 0 12px #00fff7cc;
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.2s, color 0.2s, border 0.2s;
+}
+.side-menu .login-btn:hover {
+    background: #10101a;
     color: #fff;
-}
-.register-btn:hover {
-    background: #d026b2;
-}
-.login-btn {
-    background: #101020;
-    color: #6cf;
-    border: 1px solid #6cf;
-}
-.login-btn:hover {
-    background: #222244;
+    border: 2px solid #ff2fd6;
+    box-shadow: 0 0 24px #ff2fd6cc, 0 0 8px #00fff7cc;
 }
 .side-menu ul {
     list-style: none;
@@ -132,13 +146,31 @@ header h1 {
 }
 .side-menu li {
     padding: 1rem 0;
-    border-bottom: 1px solid #222244;
+    border-bottom: 1px solid #23234a;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: color 0.2s;
+    color: #fff;
+    transition: color 0.2s, box-shadow 0.2s, background 0.2s;
+    position: relative;
+}
+.side-menu li.active, .side-menu li:active, .side-menu li.selected {
+    color: #2fffd6;
+    background: rgba(47,255,214,0.08);
+    box-shadow: 0 0 16px #2fffd6cc, 0 0 8px #ff2fd6cc;
+    border-radius: 8px;
 }
 .side-menu li:hover {
     color: #ff2fd6;
+    background: rgba(255,47,214,0.08);
+    box-shadow: 0 0 12px #ff2fd6cc;
+    border-radius: 8px;
+}
+.side-menu li a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 .overlay {
     position: fixed;
@@ -693,16 +725,22 @@ header h1 {
     text-align: center;
 }
 .main-nav a {
-    color: #2fffd6;
+    color: #00fff7;
     text-decoration: none;
     font-weight: bold;
-    margin: 0 0.5rem;
-    font-size: 1.08rem;
-    transition: color 0.2s;
+    margin: 0 0.7rem;
+    font-size: 1.18rem;
+    transition: color 0.2s, text-shadow 0.2s, border-bottom 0.2s;
+    text-shadow: 0 0 8px #00fff7, 0 0 16px #2fffd6cc;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+    display: inline-block;
+    position: relative;
 }
-.main-nav a:hover {
+.main-nav a:hover, .main-nav a.active {
     color: #ff2fd6;
-    text-decoration: underline;
+    text-shadow: 0 0 16px #ff2fd6, 0 0 24px #2fffd6cc;
+    border-bottom: 2px solid #ff2fd6;
 }
 .fade-in {
     opacity: 0;
