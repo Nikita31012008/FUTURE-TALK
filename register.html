@@ -6,6 +6,13 @@
     <title>Регистрация | Future Talk</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        .stars-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at bottom, #0a0a13 0%, #141422 100%);
+        }
         .register-hero {
             display: flex;
             flex-direction: column;
@@ -13,16 +20,18 @@
             justify-content: center;
             min-height: 100vh;
             background: none;
+            position: relative;
+            z-index: 1;
         }
         .register-card {
-            background: rgba(24, 24, 48, 0.98);
+            background: rgba(24, 24, 48, 0.92);
             border-radius: 18px;
-            box-shadow: 0 4px 32px #000a, 0 0 0 2px #2fffd655;
+            box-shadow: 0 4px 32px #2fffd655, 0 0 0 2px #ff2fd655;
             padding: 2.2rem 2rem 1.5rem 2rem;
             max-width: 370px;
             width: 100%;
             margin: 2rem auto;
-            border: 2.5px solid #6cf2;
+            border: 2.5px solid #2fffd6;
             position: relative;
             animation: fadeInUp 1s cubic-bezier(.4,2,.6,1);
         }
@@ -30,12 +39,20 @@
             0% { opacity: 0; transform: translateY(60px); }
             100% { opacity: 1; transform: none; }
         }
-        .register-card h2 {
+        .register-title {
             color: #2fffd6;
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
+            font-size: 2rem;
+            font-weight: bold;
             text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 16px #2fffd6cc, 0 0 32px #ff2fd6cc;
+        }
+        .register-sub {
+            text-align: center;
+            color: #b0eaff;
+            margin-bottom: 1.5rem;
+            font-size: 1.08rem;
         }
         .register-card form {
             display: flex;
@@ -45,15 +62,17 @@
         .register-card input {
             padding: 0.8rem 1.2rem 0.8rem 2.5rem;
             border-radius: 7px;
-            border: 1.5px solid #333355;
-            background: #222244;
+            border: 1.5px solid #2fffd6;
+            background: #181830;
             color: #fff;
             font-size: 1rem;
             outline: none;
-            transition: border 0.2s;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 8px #2fffd655 inset;
         }
         .register-card input:focus {
-            border: 1.5px solid #2fffd6;
+            border: 1.5px solid #ff2fd6;
+            box-shadow: 0 2px 16px #ff2fd655;
         }
         .register-card .input-icon {
             position: absolute;
@@ -61,7 +80,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 1.2rem;
-            color: #6cf;
+            color: #2fffd6;
             pointer-events: none;
         }
         .register-card .input-group {
@@ -73,18 +92,18 @@
             font-weight: bold;
             font-size: 1.08rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 0.8rem;
             margin-top: 0.7rem;
             cursor: pointer;
-            box-shadow: 0 2px 12px #2fffd655;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 12px #2fffd655, 0 0 8px #ff2fd655;
             letter-spacing: 1px;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
         }
         .register-card button:hover {
             background: linear-gradient(90deg, #ff2fd6 0%, #2fffd6 100%);
             color: #fff;
-            box-shadow: 0 4px 24px #ff2fd6cc;
+            box-shadow: 0 4px 24px #ff2fd6cc, 0 0 16px #2fffd6cc;
         }
         .register-card .form-link {
             margin-top: 1rem;
@@ -109,9 +128,11 @@
     </style>
 </head>
 <body>
+    <div class="stars-bg" id="starsBg"></div>
     <div class="register-hero">
         <div class="register-card fade-in">
-            <h2>Регистрация</h2>
+            <div class="register-title">РЕГИСТРАЦИЯ</div>
+            <div class="register-sub">Создайте аккаунт, чтобы открыть доступ к возможностям FUTURE TALK</div>
             <form id="registerForm">
                 <div class="input-group">
                     <span class="input-icon">👤</span>
@@ -133,6 +154,69 @@
         </div>
     </div>
     <script>
+    // Анимированный звездный фон
+    const starsBg = document.getElementById('starsBg');
+    const STAR_COUNT = 100;
+    let stars = [];
+    function randomStar() {
+        return {
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            r: Math.random() * 1.2 + 0.4,
+            o: Math.random() * 0.5 + 0.5,
+            dx: (Math.random() - 0.5) * 0.08,
+            dy: (Math.random() - 0.5) * 0.08
+        };
+    }
+    function drawStars() {
+        let ctx = starsBg.getContext('2d');
+        ctx.clearRect(0, 0, starsBg.width, starsBg.height);
+        for (let s of stars) {
+            ctx.save();
+            ctx.globalAlpha = s.o;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+            ctx.fillStyle = '#fff';
+            ctx.shadowColor = '#2fffd6';
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+    function animateStars() {
+        for (let s of stars) {
+            s.x += s.dx;
+            s.y += s.dy;
+            if (s.x < 0) s.x = window.innerWidth;
+            if (s.x > window.innerWidth) s.x = 0;
+            if (s.y < 0) s.y = window.innerHeight;
+            if (s.y > window.innerHeight) s.y = 0;
+        }
+        drawStars();
+        requestAnimationFrame(animateStars);
+    }
+    function resizeStars() {
+        starsBg.width = window.innerWidth;
+        starsBg.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeStars);
+    // canvas init
+    starsBg.innerHTML = '';
+    let canvas = document.createElement('canvas');
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.display = 'block';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.zIndex = '0';
+    starsBg.appendChild(canvas);
+    starsBg = canvas;
+    resizeStars();
+    stars = Array.from({length: STAR_COUNT}, randomStar);
+    animateStars();
+
+    // Валидация и регистрация
     function validatePassword(password) {
         if (password.length < 6) return false;
         if (!/^[A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(password)) return false;
