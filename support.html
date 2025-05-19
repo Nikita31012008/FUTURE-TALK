@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Техническая поддержка FUTURE TALK. Получите помощь по любым вопросам, связанным с нашим сервисом.">
+    <meta name="keywords" content="FUTURE TALK, поддержка, помощь, FAQ, контакты, техническая поддержка">
+    <meta name="author" content="FUTURE TALK Team">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="FUTURE TALK - Техническая поддержка">
+    <meta property="og:description" content="Получите помощь по любым вопросам, связанным с FUTURE TALK">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://futuretalk.com/support">
+    <title>FUTURE TALK - Техническая поддержка</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-dark: #0a0e23;
+            --space-darker: #050816;
+            --neon-blue: #00f0ff;
+            --neon-purple: #b400ff;
+            --cosmic-pink: #ff00aa;
+            --star-light: #e0e0ff;
+            --space-gray: #1a1d35;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--space-dark);
+            color: var(--star-light);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(180, 0, 255, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(0, 240, 255, 0.15) 0%, transparent 25%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="white" opacity="0.7"/><circle cx="50" cy="80" r="1" fill="white" opacity="0.5"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.9"/><circle cx="30" cy="60" r="1" fill="white" opacity="0.3"/></svg>');
+            background-attachment: fixed;
+            padding: 20px;
+        }
+
+        .support-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(10, 14, 35, 0.8);
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .support-header h1 {
+            color: var(--neon-blue);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .contact-form, .faq-section {
+            background: rgba(10, 14, 35, 0.8);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .section-title {
+            color: var(--neon-blue);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--star-light);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(26, 29, 53, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 8px;
+            color: var(--star-light);
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--cosmic-pink));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(180, 0, 255, 0.4);
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .faq-question {
+            color: var(--neon-blue);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--star-light);
+            line-height: 1.6;
+            display: none;
+            padding: 10px;
+            background: rgba(0, 240, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(10, 14, 35, 0.8);
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+        }
+
+        .contact-info h3 {
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--star-light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-method:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+
+        .contact-method i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="support-container">
+        <div class="support-header">
+            <h1>Техническая поддержка</h1>
+            <p>Мы всегда готовы помочь вам с любыми вопросами</p>
+        </div>
+
+        <div class="support-grid">
+            <div class="contact-form">
+                <h2 class="section-title">Связаться с нами</h2>
+                <form id="supportForm" onsubmit="return handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Тема</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Выберите тему</option>
+                            <option value="technical">Техническая проблема</option>
+                            <option value="account">Вопросы по аккаунту</option>
+                            <option value="payment">Оплата</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Отправить</button>
+                </form>
+            </div>
+
+            <div class="faq-section">
+                <h2 class="section-title">Часто задаваемые вопросы</h2>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Как начать использовать FUTURE TALK?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Для начала работы с FUTURE TALK необходимо зарегистрироваться на сайте, после чего вы получите доступ к чату с ботом и всем функциям сервиса.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Как работает система рекомендаций?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Наша система использует искусственный интеллект для анализа ваших интересов, навыков и целей, чтобы предложить персонализированные рекомендации по образованию и карьере.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Как часто обновляется информация?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        База данных FUTURE TALK обновляется ежедневно, чтобы предоставлять вам самую актуальную информацию о рынке труда и образовательных возможностях.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Как защищены мои данные?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Мы используем современные методы шифрования и защиты данных. Ваша личная информация хранится в зашифрованном виде и никогда не передается третьим лицам.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h3>Другие способы связи</h3>
+            <div class="contact-methods">
+                <a href="mailto:support@futuretalk.com" class="contact-method">
+                    <i class="fas fa-envelope"></i>
+                    support@futuretalk.com
+                </a>
+                <a href="tel:+78001234567" class="contact-method">
+                    <i class="fas fa-phone"></i>
+                    8 (800) 123-45-67
+                </a>
+                <a href="https://t.me/futuretalk_support" class="contact-method">
+                    <i class="fab fa-telegram"></i>
+                    @futuretalk_support
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Обработка отправки формы
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('http://localhost:3000/api/support', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.message || 'Ошибка отправки формы');
+                }
+
+                alert('Спасибо за обращение! Мы свяжемся с вами в ближайшее время.');
+                event.target.reset();
+
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert(error.message || 'Произошла ошибка при отправке формы');
+            }
+
+            return false;
+        }
+
+        // Переключение FAQ
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            answer.classList.toggle('active');
+            icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+        }
+
+        // Проверка авторизации при загрузке страницы
+        window.addEventListener('load', () => {
+            const user = localStorage.getItem('user');
+            if (!user) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html> 
