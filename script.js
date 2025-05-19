@@ -24,14 +24,8 @@ const registerModal = document.getElementById('registerModal');
 const loginModal = document.getElementById('loginModal');
 const closeModalBtns = document.querySelectorAll('.close-modal');
 
-openRegisterBtn.onclick = () => {
-    registerModal.classList.add('active');
-    overlay.classList.add('active');
-};
-openLoginBtn.onclick = () => {
-    loginModal.classList.add('active');
-    overlay.classList.add('active');
-};
+// Удаляю обработчики для openRegisterBtn и openLoginBtn, чтобы переход был только по ссылке
+
 closeModalBtns.forEach(btn => {
     btn.onclick = (e) => {
         const modalId = btn.getAttribute('data-close');
