@@ -1,11 +1,18 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: #181830;
+    background: linear-gradient(-45deg, #181830, #6cf, #ff2fd6, #23234a);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     color: #e0e0f0;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+}
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 body::before {
     content: '';
@@ -376,8 +383,8 @@ header h1 {
     z-index: 1;
 }
 .feature-card:hover {
-    transform: translateY(-6px) scale(1.05);
-    box-shadow: 0 8px 32px #ff2fd6cc, 0 0 0 2px #2fffd6cc;
+    transform: translateY(-8px) scale(1.07);
+    box-shadow: 0 12px 32px #ff2fd6cc, 0 0 0 2.5px #2fffd6cc;
     border: 2px solid #ff2fd6;
 }
 .feature-card img {
@@ -677,4 +684,43 @@ header h1 {
     background: linear-gradient(90deg, #ff2fd6 0%, #2fffd6 100%);
     color: #fff;
     box-shadow: 0 4px 24px #ff2fd6cc;
+}
+.main-nav {
+    margin: 1.2rem 0 1.5rem 0;
+    text-align: center;
+}
+.main-nav a {
+    color: #2fffd6;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 0.5rem;
+    font-size: 1.08rem;
+    transition: color 0.2s;
+}
+.main-nav a:hover {
+    color: #ff2fd6;
+    text-decoration: underline;
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(.4,2,.6,1), transform 0.8s cubic-bezier(.4,2,.6,1);
+}
+.fade-in.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Эффекты наведения */
+button, .register-btn, .login-btn, .profile-main-btn, .profile-menu-btn, .logout-btn {
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+button:hover, .register-btn:hover, .login-btn:hover, .profile-main-btn:hover, .profile-menu-btn:hover, .logout-btn:hover {
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 18px #ff2fd6cc, 0 0 0 2px #2fffd6cc;
+}
+.feature-card:hover {
+    transform: translateY(-8px) scale(1.07);
+    box-shadow: 0 12px 32px #ff2fd6cc, 0 0 0 2.5px #2fffd6cc;
+    border: 2px solid #ff2fd6;
 } 

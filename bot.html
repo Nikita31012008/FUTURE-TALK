@@ -5,17 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Общение с ботом | Future Talk</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .chat-container { max-width: 420px; margin: 2rem auto; background: rgba(24,24,48,0.98); border-radius: 14px; box-shadow: 0 2px 16px #0008; padding: 1.5rem; }
+        .chat-messages { min-height: 180px; max-height: 320px; overflow-y: auto; margin-bottom: 1rem; background: #23234a; border-radius: 8px; padding: 1rem; }
+        .chat-msg { margin-bottom: 0.7rem; }
+        .chat-msg.user { text-align: right; color: #2fffd6; }
+        .chat-msg.bot { text-align: left; color: #ff2fd6; }
+        .chat-form { display: flex; gap: 0.5rem; }
+        .chat-form input { flex: 1; padding: 0.6rem; border-radius: 7px; border: 1px solid #333355; background: #222244; color: #fff; }
+        .chat-form button { padding: 0.6rem 1.2rem; border-radius: 7px; border: none; background: #6cf; color: #181830; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+        .chat-form button:hover { background: #ff2fd6; color: #fff; }
+    </style>
 </head>
 <body>
     <header>
         <h1>Общение с ботом</h1>
-        <a href="index.html">На главную</a>
+        <nav class="main-nav">
+            <a href="index.html">Главная</a> |
+            <a href="bot.html">Общение с ботом</a> |
+            <a href="team.html">Состав компании</a> |
+            <a href="feedback.html">Отзывы</a> |
+            <a href="support.html">Тех поддержка</a>
+        </nav>
     </header>
     <main>
-        <section class="main-block">
-            <h2>Здесь будет чат с ботом</h2>
-            <p>В будущем здесь появится функционал общения с ботом.</p>
+        <section class="main-block fade-in">
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages"></div>
+                <form class="chat-form" id="chatForm" autocomplete="off">
+                    <input type="text" id="chatInput" placeholder="Введите сообщение..." required />
+                    <button type="submit">Отправить</button>
+                </form>
+            </div>
         </section>
     </main>
+    <script>
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+    function addMsg(text, who) {
+        const div = document.createElement('div');
+        div.className = 'chat-msg ' + who;
+        div.textContent = text;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    function botReply(msg) {
+        msg = msg.toLowerCase();
+        if (msg.includes('привет')) return 'Привет! Чем могу помочь?';
+        if (msg.includes('как дела')) return 'У меня всё отлично! А у тебя?';
+        if (msg.includes('помощь')) return 'Вы можете перейти в раздел "Тех поддержка".';
+        if (msg.includes('отзыв')) return 'Чтобы оставить отзыв, перейдите в раздел "Отзывы".';
+        if (msg.includes('компания')) return 'Информация о команде — в разделе "Состав компании".';
+        if (msg.includes('пока')) return 'До встречи!';
+        return 'Извините, я пока не знаю, как ответить на это. Попробуйте спросить что-то другое!';
+    }
+    chatForm.onsubmit = function(e) {
+        e.preventDefault();
+        const msg = chatInput.value.trim();
+        if (!msg) return;
+        addMsg(msg, 'user');
+        setTimeout(() => {
+            addMsg(botReply(msg), 'bot');
+        }, 500);
+        chatInput.value = '';
+    };
+    </script>
 </body>
 </html> 

@@ -122,4 +122,17 @@ function logout() {
 window.onload = function() {
     const username = localStorage.getItem('currentUser');
     if (username) showLoggedIn(username);
-}; 
+};
+
+// Анимация появления fade-in
+function handleFadeIn() {
+    const fadeEls = document.querySelectorAll('.fade-in');
+    fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+            el.classList.add('visible');
+        }
+    });
+}
+window.addEventListener('scroll', handleFadeIn);
+window.addEventListener('load', handleFadeIn); 
