@@ -5,19 +5,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация | Future Talk</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .register-hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: none;
+        }
+        .register-card {
+            background: rgba(24, 24, 48, 0.98);
+            border-radius: 18px;
+            box-shadow: 0 4px 32px #000a, 0 0 0 2px #2fffd655;
+            padding: 2.2rem 2rem 1.5rem 2rem;
+            max-width: 370px;
+            width: 100%;
+            margin: 2rem auto;
+            border: 2.5px solid #6cf2;
+            position: relative;
+            animation: fadeInUp 1s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(60px); }
+            100% { opacity: 1; transform: none; }
+        }
+        .register-card h2 {
+            color: #2fffd6;
+            margin-bottom: 1.2rem;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+        .register-card form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .register-card input {
+            padding: 0.8rem 1.2rem 0.8rem 2.5rem;
+            border-radius: 7px;
+            border: 1.5px solid #333355;
+            background: #222244;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .register-card input:focus {
+            border: 1.5px solid #2fffd6;
+        }
+        .register-card .input-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #6cf;
+            pointer-events: none;
+        }
+        .register-card .input-group {
+            position: relative;
+        }
+        .register-card button {
+            background: linear-gradient(90deg, #2fffd6 0%, #ff2fd6 100%);
+            color: #181830;
+            font-weight: bold;
+            font-size: 1.08rem;
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-top: 0.7rem;
+            cursor: pointer;
+            box-shadow: 0 2px 12px #2fffd655;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            letter-spacing: 1px;
+        }
+        .register-card button:hover {
+            background: linear-gradient(90deg, #ff2fd6 0%, #2fffd6 100%);
+            color: #fff;
+            box-shadow: 0 4px 24px #ff2fd6cc;
+        }
+        .register-card .form-link {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.98rem;
+        }
+        .register-card .form-link a {
+            color: #6cf;
+            text-decoration: underline;
+        }
+        .register-card .form-error {
+            color: #ff2fd6;
+            margin-top: 0.7rem;
+            font-size: 0.98rem;
+            text-align: center;
+        }
+        .register-card .form-hint {
+            color: #6cf;
+            font-size: 0.92rem;
+            margin-bottom: 0.2rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="auth-container">
-        <h2>Регистрация</h2>
-        <form id="registerForm">
-            <input type="text" name="username" placeholder="Логин" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Пароль" required>
-            <div class="form-hint">Пароль: минимум 6 символов, только латиница, минимум 2 спецсимвола</div>
-            <button type="submit">Зарегистрироваться</button>
-            <div class="form-link">Уже есть аккаунт? <a href="login.html">Войти</a></div>
-        </form>
-        <div id="registerError" class="form-error"></div>
+    <div class="register-hero">
+        <div class="register-card fade-in">
+            <h2>Регистрация</h2>
+            <form id="registerForm">
+                <div class="input-group">
+                    <span class="input-icon">👤</span>
+                    <input type="text" name="username" placeholder="Логин" required style="padding-left:2.5rem;">
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">📧</span>
+                    <input type="email" name="email" placeholder="Email" required style="padding-left:2.5rem;">
+                </div>
+                <div class="input-group">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" name="password" placeholder="Пароль" required style="padding-left:2.5rem;">
+                </div>
+                <div class="form-hint">Пароль: минимум 6 символов, только латиница, минимум 2 спецсимвола</div>
+                <button type="submit">Зарегистрироваться</button>
+                <div class="form-link">Уже есть аккаунт? <a href="login.html">Войти</a></div>
+                <div id="registerError" class="form-error"></div>
+            </form>
+        </div>
     </div>
     <script>
     function validatePassword(password) {
