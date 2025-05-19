@@ -10,6 +10,7 @@ header {
     padding: 1rem;
     background: #181830;
     box-shadow: 0 2px 8px #0004;
+    position: relative;
 }
 header h1 {
     flex: 1;
@@ -25,7 +26,7 @@ header h1 {
     border: none;
     color: #fff;
     cursor: pointer;
-    margin-right: 1rem;
+    margin-left: auto;
 }
 .side-menu {
     position: fixed;
@@ -166,7 +167,7 @@ header h1 {
 }
 @media (max-width: 600px) {
     .side-menu {
-        width: 90vw;
+        width: 100vw;
         padding: 1.5rem 1rem;
     }
     .modal {
