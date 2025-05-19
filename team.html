@@ -5,23 +5,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Состав компании | Future Talk</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .stars-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at bottom, #0a0a13 0%, #141422 100%);
+        }
+        .team-section {
+            position: relative;
+            z-index: 1;
+        }
+        .team-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-align: center;
+            color: #6cf;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 16px #2fffd6cc, 0 0 32px #ff2fd6cc;
+        }
+        .team-desc {
+            text-align: center;
+            color: #b0eaff;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+        .team-card {
+            background: rgba(24, 24, 48, 0.92);
+            border-radius: 16px;
+            box-shadow: 0 2px 24px #2fffd655, 0 0 0 2px #ff2fd655;
+            padding: 1.5rem 1.2rem;
+            min-width: 220px;
+            max-width: 260px;
+            text-align: center;
+            border: 2px solid #2fffd6;
+            position: relative;
+            z-index: 1;
+            transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
+        }
+        .team-card:hover {
+            box-shadow: 0 8px 32px #ff2fd6cc, 0 0 0 2.5px #2fffd6cc;
+            border: 2px solid #ff2fd6;
+            transform: translateY(-6px) scale(1.04);
+        }
+        .team-avatar {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2fffd6 40%, #ff2fd6 100%);
+            color: #181830;
+            font-size: 2.1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            box-shadow: 0 2px 12px #2fffd655;
+            border: 3px solid #fff2;
+            text-shadow: 0 0 8px #2fffd6cc;
+        }
+        .team-name {
+            color: #2fffd6;
+            font-size: 1.15rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        .team-role {
+            color: #ff2fd6;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .team-desc-short {
+            color: #b0eaff;
+            font-size: 0.98rem;
+        }
+        .team-join {
+            margin-top: 2.5rem;
+            text-align: center;
+            color: #2fffd6;
+            font-size: 1.15rem;
+            font-weight: bold;
+            text-shadow: 0 0 8px #2fffd6cc;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Состав компании</h1>
-        <nav class="main-nav">
-            <a href="index.html">Главная</a> |
-            <a href="bot.html">Общение с ботом</a> |
-            <a href="team.html">Состав компании</a> |
-            <a href="feedback.html">Отзывы</a> |
-            <a href="support.html">Тех поддержка</a>
-        </nav>
-    </header>
-    <main>
-        <section class="main-block">
-            <h2>Здесь будет информация о команде</h2>
-            <p>В будущем здесь появится список участников компании.</p>
-        </section>
-    </main>
+    <div class="stars-bg" id="starsBg"></div>
+    <div class="team-section">
+        <header>
+            <h1 class="team-title">КОМАНДА ПРОЕКТА</h1>
+            <div class="team-desc">Наша команда профессионалов, работающих для вашего будущего</div>
+            <nav class="main-nav">
+                <a href="index.html">Главная</a> |
+                <a href="bot.html">Общение с ботом</a> |
+                <a href="team.html">Состав компании</a> |
+                <a href="feedback.html">Отзывы</a> |
+                <a href="support.html">Тех поддержка</a>
+            </nav>
+        </header>
+        <main>
+            <section class="main-block fade-in">
+                <h2>Наша команда</h2>
+                <div style="margin-bottom:1.2rem;color:#b0eaff;">Мы — команда энтузиастов, объединённых общей целью: помочь вам найти свой путь в этом сложном мире. Каждый член нашей команды вносит свой уникальный вклад в сервис FUTURE TALK.</div>
+                <div class="team-list">
+                    <div class="team-card">
+                        <div class="team-avatar">НС</div>
+                        <div class="team-name">Никита Сердюков</div>
+                        <div class="team-role">Главный разработчик</div>
+                        <div class="team-desc-short">Отвечает за архитектуру продукта и внедрение новых технологий.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">ЮМ</div>
+                        <div class="team-name">Юмашков Марат</div>
+                        <div class="team-role">Креативный дизайнер</div>
+                        <div class="team-desc-short">Создаёт визуальный стиль, графику и пользовательские интерфейсы.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">НА</div>
+                        <div class="team-name">Новосад Анастасия</div>
+                        <div class="team-role">Контент-менеджер</div>
+                        <div class="team-desc-short">Отвечает за тексты, статьи и создание текстового наполнения.</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">МФ</div>
+                        <div class="team-name">Митлашевский Фёдор</div>
+                        <div class="team-role">Главный специалист по проектам</div>
+                        <div class="team-desc-short">Планирует и управляет проектом и привлекает партнёров для новых возможностей.</div>
+                    </div>
+                </div>
+                <div class="team-join">Присоединяйтесь к нашему проекту!<br><span style="color:#b0eaff;font-size:0.98rem;font-weight:normal;">Ваше будущее начинается здесь — с FUTURE TALK.</span></div>
+            </section>
+        </main>
+    </div>
+    <script>
+    // Анимированный звездный фон
+    const starsBg = document.getElementById('starsBg');
+    const STAR_COUNT = 120;
+    let stars = [];
+    function randomStar() {
+        return {
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            r: Math.random() * 1.2 + 0.4,
+            o: Math.random() * 0.5 + 0.5,
+            dx: (Math.random() - 0.5) * 0.08,
+            dy: (Math.random() - 0.5) * 0.08
+        };
+    }
+    function drawStars() {
+        let ctx = starsBg.getContext('2d');
+        ctx.clearRect(0, 0, starsBg.width, starsBg.height);
+        for (let s of stars) {
+            ctx.save();
+            ctx.globalAlpha = s.o;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+            ctx.fillStyle = '#fff';
+            ctx.shadowColor = '#2fffd6';
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.restore();
+        }
+    }
+    function animateStars() {
+        for (let s of stars) {
+            s.x += s.dx;
+            s.y += s.dy;
+            if (s.x < 0) s.x = window.innerWidth;
+            if (s.x > window.innerWidth) s.x = 0;
+            if (s.y < 0) s.y = window.innerHeight;
+            if (s.y > window.innerHeight) s.y = 0;
+        }
+        drawStars();
+        requestAnimationFrame(animateStars);
+    }
+    function resizeStars() {
+        starsBg.width = window.innerWidth;
+        starsBg.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeStars);
+    // canvas init
+    starsBg.innerHTML = '';
+    let canvas = document.createElement('canvas');
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.display = 'block';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.zIndex = '0';
+    starsBg.appendChild(canvas);
+    starsBg = canvas;
+    resizeStars();
+    stars = Array.from({length: STAR_COUNT}, randomStar);
+    animateStars();
+    </script>
 </body>
 </html> 
