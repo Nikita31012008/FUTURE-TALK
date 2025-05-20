@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FUTURE TALK - инновационный бот-помощник для вашего будущего. Получите персонализированные рекомендации по образованию и карьере.">
+    <meta name="keywords" content="FUTURE TALK, бот-помощник, искусственный интеллект, образование, карьера, профориентация">
+    <meta name="author" content="FUTURE TALK Team">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="FUTURE TALK - Ваш персональный бот-помощник">
+    <meta property="og:description" content="Инновационный бот-помощник для вашего будущего. Получите персонализированные рекомендации по образованию и карьере.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://futuretalk.com">
+    <title>FUTURE TALK - Главная</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-dark: #18192b;
+            --space-darker: #0a0e23;
+            --neon-blue: #00f0ff;
+            --neon-purple: #b400ff;
+            --cosmic-pink: #ff00aa;
+            --star-light: #e0e0ff;
+            --space-gray: #1a1d35;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at 50% 30%, rgba(180,0,255,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse at 80% 80%, rgba(0,240,255,0.12) 0%, transparent 70%),
+                linear-gradient(120deg, #18192b 0%, #23244a 100%);
+            background-color: var(--space-dark);
+            color: var(--star-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="1" cy="1" r="1" fill="white" fill-opacity="0.08"/></svg>');
+            background-size: 40px 40px;
+            opacity: 1;
+        }
+        .main-wrapper {
+            max-width: 800px;
+            margin: 40px auto 40px auto;
+            padding: 0 16px;
+            position: relative;
+            z-index: 1;
+        }
+        .header-box {
+            background: linear-gradient(90deg, rgba(0,240,255,0.12), rgba(180,0,255,0.12));
+            border-radius: 12px;
+            box-shadow: 0 0 24px 0 rgba(0,240,255,0.08);
+            text-align: center;
+            padding: 24px 10px 16px 10px;
+            margin-bottom: 32px;
+            animation: float 6s ease-in-out infinite;
+        }
+        .header-box h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--star-light), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .header-box p {
+            color: var(--star-light);
+            font-size: 1rem;
+            opacity: 0.85;
+        }
+        .card {
+            background: rgba(10, 14, 35, 0.92);
+            border-radius: 12px;
+            box-shadow: 0 0 24px 0 rgba(0,240,255,0.08);
+            margin-bottom: 28px;
+            padding: 24px 20px;
+            border: 1px solid rgba(0, 240, 255, 0.08);
+            position: relative;
+            transition: var(--transition-smooth);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0,240,255,0.15);
+            border-color: rgba(0, 240, 255, 0.2);
+        }
+        .card h2 {
+            color: var(--neon-blue);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            transition: var(--transition-smooth);
+        }
+        .card:hover h2 {
+            text-shadow: 0 0 10px rgba(0,240,255,0.5);
+        }
+        .card p, .card ul {
+            color: var(--star-light);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .card ul {
+            padding-left: 18px;
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 16px 0;
+            box-shadow: 0 0 12px rgba(0,240,255,0.10);
+            transition: var(--transition-smooth);
+        }
+        .card img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(0,240,255,0.20);
+        }
+        .card .image-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .card .image-row img {
+            width: 100%;
+            max-width: 180px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        @media (max-width: 600px) {
+            .main-wrapper { max-width: 100%; }
+            .header-box h1 { font-size: 1.3rem; }
+            .card { padding: 14px 6px; }
+            .card .image-row img { max-width: 100px; height: 50px; }
+        }
+        .menu-btn {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 1001;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 0 16px rgba(0,240,255,0.18);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: pulse 2s infinite;
+        }
+        .menu-btn:hover {
+            background: linear-gradient(135deg, var(--cosmic-pink), var(--neon-blue));
+            color: #fff;
+            box-shadow: 0 0 24px rgba(180,0,255,0.25);
+            transform: translateY(-2px) scale(1.04);
+            animation: none;
+        }
+        @media (max-width: 600px) {
+            .menu-btn {
+                top: 12px;
+                left: 12px;
+                padding: 10px 16px;
+                font-size: 0.95rem;
+            }
+        }
+        .sidebar-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(10,14,35,0.7);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(3px);
+        }
+        .sidebar {
+            height: 100vh;
+            width: 320px;
+            position: fixed;
+            top: 0;
+            right: -340px;
+            background: linear-gradient(120deg, #0a0e23 60%, #18192b 100%);
+            box-shadow: -5px 0 30px rgba(0,240,255,0.10);
+            z-index: 1001;
+            padding-top: 32px;
+            transition: var(--transition-smooth);
+            border-left: 1px solid rgba(0,240,255,0.08);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+        .sidebar.open {
+            right: 0;
+            animation: pulse 2s infinite;
+        }
+        .sidebar-overlay.open {
+            display: block;
+            opacity: 1;
+        }
+        .closebtn {
+            position: absolute;
+            top: 18px;
+            right: 24px;
+            font-size: 28px;
+            color: var(--neon-blue);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1002;
+            transition: color 0.2s;
+        }
+        .closebtn:hover {
+            color: var(--cosmic-pink);
+        }
+        .auth-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 0 24px 24px 24px;
+        }
+        .auth-buttons .btn {
+            display: block;
+            width: 100%;
+            padding: 16px 0;
+            text-align: center;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .auth-buttons .register {
+            background: linear-gradient(90deg, var(--neon-purple), var(--cosmic-pink));
+            color: #fff;
+            box-shadow: 0 0 15px rgba(180,0,255,0.18);
+            border: none;
+        }
+        .auth-buttons .register:hover {
+            background: linear-gradient(90deg, var(--cosmic-pink), var(--neon-purple));
+            box-shadow: 0 0 25px rgba(180,0,255,0.28);
+        }
+        .auth-buttons .login {
+            background: transparent;
+            color: var(--neon-blue);
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0,240,255,0.10);
+        }
+        .auth-buttons .login:hover {
+            background: rgba(0,240,255,0.08);
+            color: var(--cosmic-pink);
+            border-color: var(--cosmic-pink);
+        }
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 0 24px;
+            border-top: 1px solid rgba(0,240,255,0.08);
+            padding-top: 24px;
+        }
+        .sidebar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.08rem;
+            padding: 16px 0;
+            border-radius: 6px;
+            transition: all 0.25s;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+        .sidebar-links a:hover {
+            color: var(--neon-blue);
+            background: rgba(0,240,255,0.06);
+            padding-left: 12px;
+        }
+        @media (max-width: 500px) {
+            .sidebar { width: 100vw; min-width: 0; right: -100vw; }
+            .sidebar.open { right: 0; }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0,240,255,0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0,240,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,240,255,0); }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-smooth);
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .sidebar-profile-animated {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+        .sidebar-profile-animated.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="menu"></div>
+    <script>
+        fetch('menu.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('menu').innerHTML = html;
+                updateMenu();
+            });
+
+        function updateMenu() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                document.querySelectorAll('.menu-auth').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.menu-profile').forEach(el => el.style.display = 'inline-block');
+            } else {
+                document.querySelectorAll('.menu-auth').forEach(el => el.style.display = 'inline-block');
+                document.querySelectorAll('.menu-profile').forEach(el => el.style.display = 'none');
+            }
+        }
+    </script>
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+    <div id="mySidebar" class="sidebar">
+        <button class="closebtn" onclick="closeSidebar()">×</button>
+        <div id="sidebarProfile" class="sidebar-profile-animated" style="display:none; text-align:center; margin:24px 24px 0 24px;">
+            <a href="profile.html" id="sidebarProfileLink" style="text-decoration:none;display:inline-block;">
+                <img id="sidebarAvatar" src="default-avatar.png" alt="Аватар" style="width:64px;height:64px;border-radius:50%;box-shadow:0 0 8px #00f0ff44;cursor:pointer;">
+                <div id="sidebarUsername" style="margin-top:8px;font-weight:700;color:#00f0ff;cursor:pointer;"></div>
+            </a>
+            <div id="sidebarEmail" style="font-size:0.98rem;color:#e0e0ffb0;margin-top:2px;"></div>
+            <div id="sidebarStatus" style="margin-top:4px;font-size:0.95rem;color:#2af598;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;">
+                <span style="display:inline-block;width:10px;height:10px;background:#2af598;border-radius:50%;box-shadow:0 0 6px #2af59888;"></span> Онлайн
+            </div>
+            <button onclick="window.location.href='profile.html'" style="margin-top:10px;padding:7px 16px;border-radius:8px;background:#23244a;color:#00f0ff;border:1px solid #00f0ff;cursor:pointer;font-size:0.98rem;">Изменить профиль</button>
+            <button onclick="logout()" style="margin-top:10px;padding:7px 16px;border-radius:8px;background:#18192b;color:#00f0ff;border:1px solid #00f0ff;cursor:pointer;font-size:0.98rem;">Выйти</button>
+        </div>
+        <div class="auth-buttons" id="sidebarAuthButtons">
+            <a href="register.html" class="btn register">РЕГИСТРАЦИЯ</a>
+            <a href="login.html" class="btn login">ВОЙТИ</a>
+        </div>
+        <nav class="sidebar-links">
+            <a href="index.html">Главная</a>
+            <a href="chat.html">Общение с ботом</a>
+            <a href="team.html">Состав компании</a>
+            <a href="reviews.html">Написать отзыв</a>
+            <a href="support.html">Тех поддержка</a>
+        </nav>
+    </div>
+
+    <button class="menu-btn" onclick="openSidebar()"><i class="fas fa-bars"></i> Меню</button>
+
+    <div class="main-wrapper">
+        <div class="header-box">
+            <h1>FUTURE TALK</h1>
+            <p>Инновационные решения для общения и самопознания</p>
+        </div>
+        <div class="card">
+            <h2>Добро пожаловать на FUTURE TALK!</h2>
+            <p>В современном мире, полном возможностей и разнообразия, найти свой путь может быть непростой задачей. Мы рады представить вам <span style="color:var(--neon-blue);font-weight:500;">FUTURE TALK</span> — инновационного бота-помощника, который поможет вам разобраться в ваших интересах, целях и желаниях. Наша миссия — поддержать вас на каждом шаге вашего пути к самопознанию и самореализации.</p>
+            <p><strong>FUTURE TALK — это совершенно бесплатный сервис</strong>, где вы можете просто общаться с нашим ботом, получать советы и рекомендации без каких-либо скрытых платежей или подписок.</p>
+            <div class="image-row">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Человек выбирает путь">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Команда будущего">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Технологии будущего">
+            </div>
+        </div>
+        <div class="card">
+            <h2>Что такое FUTURE TALK?</h2>
+            <p><span style="color:var(--neon-blue);font-weight:500;">FUTURE TALK</span> — это умный бот, созданный для того, чтобы помочь вам сделать осознанный выбор в важнейших аспектах вашей жизни. Независимо от того, находитесь ли вы на этапе выбора учебного заведения, планируете сменить профессию или просто ищете новое хобби, наш бот предлагает индивидуальные рекомендации и полезные советы.</p>
+            <p><strong>Вы можете просто общаться с нашим ботом как с виртуальным собеседником</strong>, делиться своими мыслями и получать поддержку в любое время суток совершенно бесплатно.</p>
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Бот FUTURE TALK">
+        </div>
+        <div class="card">
+            <h2>Как это работает?</h2>
+            <ul>
+                <li><strong>Простое общение:</strong> Вы можете просто поговорить с ботом на любые темы, как с виртуальным другом. FUTURE TALK всегда готов выслушать и поддержать вас.</li>
+                <li><strong>Опросник:</strong> Если хотите более структурированного подхода, начните с простого опросника, который поможет выявить ваши интересы, сильные стороны и предпочтения.</li>
+                <li><strong>Рекомендации по учебным заведениям:</strong> Если вы задумываетесь о поступлении в вуз, FUTURE TALK предоставит информацию о лучших учебных заведениях в вашей области интересов.</li>
+                <li><strong>Поиск хобби:</strong> Бот предложит различные варианты хобби на основе ваших предпочтений. От творчества до спорта — мы поможем вам найти занятие по душе!</li>
+                <li><strong>Карьерные советы:</strong> Для тех, кто уже определился с направлением своей профессиональной деятельности, FUTURE TALK предложит советы по развитию карьеры.</li>
+                <li><strong>Полностью бесплатно:</strong> Все функции FUTURE TALK доступны без каких-либо платежей или подписок.</li>
+            </ul>
+            <div class="image-row">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Образование">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Карьера">
+                <img src="https://images.unsplash.com/photo-1541532713592-79a0317b6b77?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Хобби">
+            </div>
+        </div>
+        <div class="card">
+            <h2>Почему выбирают нас?</h2>
+            <ul>
+                <li><strong>Индивидуальный подход:</strong> Каждый пользователь уникален, поэтому мы предлагаем персонализированные рекомендации.</li>
+                <li><strong>Доступность информации:</strong> Все советы и рекомендации основаны на актуальных данных и исследованиях.</li>
+                <li><strong>Удобство использования:</strong> Наш бот доступен 24/7 и готов помочь вам в любое время.</li>
+                <li><strong>Абсолютно бесплатно:</strong> Мы верим, что помощь в самопознании должна быть доступна всем без исключения.</li>
+                <li><strong>Простое общение:</strong> Не нужно проходить сложные регистрации — просто начните общаться с ботом!</li>
+            </ul>
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Преимущества FUTURE TALK">
+        </div>
+    </div>
+
+    <script>
+        // Функция для анимации появления элементов при прокрутке
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Добавляем класс fade-in ко всем карточкам
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.classList.add('fade-in');
+            });
+            
+            // Запускаем анимацию при загрузке
+            handleScrollAnimation();
+            
+            // Запускаем анимацию при прокрутке
+            window.addEventListener('scroll', handleScrollAnimation);
+        });
+
+        // Улучшенная анимация для сайдбара
+        const menuBtn = document.querySelector('.menu-btn');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        overlay.addEventListener('click', closeSidebar);
+        document.querySelector('.closebtn').addEventListener('click', closeSidebar);
+
+        // Добавляем плавную прокрутку для всех ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // --- Профиль пользователя в сайдбаре ---
+        function renderSidebarProfile() {
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            const profile = document.getElementById('sidebarProfile');
+            const authBtns = document.getElementById('sidebarAuthButtons');
+            if (user) {
+                profile.style.display = 'block';
+                setTimeout(() => profile.classList.add('visible'), 10); // анимация
+                authBtns.style.display = 'none';
+                let avatar = user.avatar;
+                if (!avatar) {
+                    avatar = 'https://robohash.org/' + encodeURIComponent(user.username || user.email || 'user') + '.png?set=set2';
+                }
+                document.getElementById('sidebarAvatar').src = avatar;
+                document.getElementById('sidebarUsername').textContent = user.username || '';
+                document.getElementById('sidebarEmail').textContent = user.email || '';
+            } else {
+                profile.classList.remove('visible');
+                setTimeout(() => { profile.style.display = 'none'; }, 300);
+                authBtns.style.display = 'flex';
+            }
+        }
+        function logout() {
+            localStorage.removeItem('user');
+            renderSidebarProfile();
+            closeSidebar();
+        }
+        document.addEventListener('DOMContentLoaded', renderSidebarProfile);
+
+        // Кликабельность аватара и имени (на profile.html)
+        document.addEventListener('DOMContentLoaded', function() {
+            renderSidebarProfile();
+            const profileLink = document.getElementById('sidebarProfileLink');
+            if (profileLink) {
+                profileLink.addEventListener('click', function(e) {
+                    window.location.href = 'profile.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя | FUTURE TALK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --space-dark: #18192b;
+            --neon-blue: #00f0ff;
+            --neon-purple: #b400ff;
+            --cosmic-pink: #ff00aa;
+            --star-light: #e0e0ff;
+        }
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at 50% 30%, rgba(180,0,255,0.18) 0%, transparent 70%),
+                        radial-gradient(ellipse at 80% 80%, rgba(0,240,255,0.12) 0%, transparent 70%),
+                        linear-gradient(120deg, #18192b 0%, #23244a 100%);
+            background-color: var(--space-dark);
+            color: var(--star-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .profile-container {
+            background: rgba(10, 14, 35, 0.96);
+            padding: 36px 28px 28px 28px;
+            border-radius: 18px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.18);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.7s;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .profile-header h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0;
+            text-shadow: 0 0 16px #00f0ff, 0 0 32px #00f0ff, 0 0 2px #fff;
+            letter-spacing: 1px;
+        }
+        .avatar-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        .avatar-block img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            box-shadow: 0 0 16px #00f0ff44;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+        .avatar-block label {
+            color: var(--neon-blue);
+            font-size: 0.98rem;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+        .avatar-block input[type="file"] {
+            display: none;
+        }
+        .profile-form .form-group {
+            margin-bottom: 16px;
+        }
+        .profile-form label {
+            display: block;
+            margin-bottom: 6px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        .profile-form input[type="text"],
+        .profile-form input[type="email"] {
+            width: 100%;
+            padding: 11px;
+            background: rgba(26, 29, 53, 0.8);
+            border: 1px solid rgba(0, 240, 255, 0.18);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .profile-form input:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+        .profile-status {
+            text-align: center;
+            margin-bottom: 18px;
+            color: #2af598;
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+        }
+        .profile-status span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #2af598;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #2af59888;
+        }
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            justify-content: center;
+        }
+        .profile-actions button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .profile-actions .save-btn {
+            background: linear-gradient(90deg, #2af598 0%, #009efd 100%);
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.18);
+        }
+        .profile-actions .save-btn:hover {
+            background: linear-gradient(90deg, #009efd 0%, #2af598 100%);
+            box-shadow: 0 0 30px #00f0ff44;
+        }
+        .profile-actions .back-btn {
+            background: #18192b;
+            color: #00f0ff;
+            border: 1px solid #00f0ff;
+        }
+        .profile-actions .back-btn:hover {
+            background: #23244a;
+        }
+        .success-message {
+            background: #00f0ff;
+            color: #18192b;
+            padding: 10px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 14px;
+            box-shadow: 0 0 16px #00f0ff88;
+            animation: fadeInUp 0.5s;
+        }
+        .error-message {
+            color: #ff4444;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        @media (max-width: 480px) {
+            .profile-container {
+                padding: 16px 4px;
+            }
+            .profile-header h1 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="menu"></div>
+    <script>
+        fetch('menu.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('menu').innerHTML = html;
+                updateMenu();
+            });
+
+        function updateMenu() {
+            const token = localStorage.getItem('token');
+            if (token) {
+                document.querySelectorAll('.menu-auth').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.menu-profile').forEach(el => el.style.display = 'inline-block');
+            } else {
+                document.querySelectorAll('.menu-auth').forEach(el => el.style.display = 'inline-block');
+                document.querySelectorAll('.menu-profile').forEach(el => el.style.display = 'none');
+            }
+        }
+    </script>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>Профиль пользователя</h1>
+        </div>
+        <form class="profile-form" id="profileForm" autocomplete="off" onsubmit="return saveProfile(event)">
+            <div class="avatar-block">
+                <img id="profileAvatar" src="default-avatar.png" alt="Аватар">
+            </div>
+            <div class="profile-status"><span></span> Онлайн</div>
+            <div class="form-group">
+                <label for="profileUsername">Имя</label>
+                <input type="text" id="profileUsername" name="username" required minlength="3" maxlength="32">
+            </div>
+            <div class="form-group">
+                <label for="profileEmail">Email</label>
+                <input type="email" id="profileEmail" name="email" required>
+            </div>
+            <div class="error-message" id="profileError" style="display:none;"></div>
+            <div class="success-message" id="profileSuccess" style="display:none;"></div>
+            <div class="profile-actions">
+                <button type="submit" class="save-btn">Сохранить</button>
+                <button type="button" class="back-btn" onclick="window.location.href='index.html'">Назад</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        // Загрузка данных пользователя из localStorage
+        function loadProfile() {
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            if (user) {
+                document.getElementById('profileUsername').value = user.username || '';
+                document.getElementById('profileEmail').value = user.email || '';
+                let avatar = user.avatar;
+                if (!avatar) {
+                    avatar = 'https://robohash.org/' + encodeURIComponent(user.username || user.email || 'user') + '.png?set=set2';
+                }
+                document.getElementById('profileAvatar').src = avatar;
+            }
+        }
+        // Сохранение профиля
+        function saveProfile(event) {
+            event.preventDefault();
+            const username = document.getElementById('profileUsername').value.trim();
+            const email = document.getElementById('profileEmail').value.trim();
+            // Валидация
+            if (username.length < 3) {
+                showError('Имя должно быть не менее 3 символов');
+                return false;
+            }
+            if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+                showError('Введите корректный email');
+                return false;
+            }
+            // Сохраняем в localStorage
+            localStorage.setItem('user', JSON.stringify({ username, email, avatar: 'https://robohash.org/' + encodeURIComponent(username) + '.png?set=set2' }));
+            showSuccess('Профиль успешно обновлён!');
+            setTimeout(() => {
+                document.getElementById('profileSuccess').style.display = 'none';
+            }, 1800);
+            return false;
+        }
+        function showError(msg) {
+            const el = document.getElementById('profileError');
+            el.textContent = msg;
+            el.style.display = 'block';
+            document.getElementById('profileSuccess').style.display = 'none';
+        }
+        function showSuccess(msg) {
+            const el = document.getElementById('profileSuccess');
+            el.textContent = msg;
+            el.style.display = 'block';
+            document.getElementById('profileError').style.display = 'none';
+        }
+        document.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+</body>
+</html> 

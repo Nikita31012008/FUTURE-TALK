@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Команда проекта | FUTURE TALK</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: linear-gradient(135deg, #23243a 0%, #3a3b5a 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-top: 40px;
+            letter-spacing: 2px;
+        }
+        .team-desc {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #bdbddd;
+        }
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin: 0 auto 40px auto;
+            max-width: 1200px;
+        }
+        .team-card {
+            background: rgba(40, 42, 70, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 32px 28px;
+            min-width: 280px;
+            max-width: 340px;
+            flex: 1 1 300px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .team-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.45);
+        }
+        .team-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 16px rgba(161, 140, 209, 0.3);
+        }
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .team-role {
+            font-size: 1.05rem;
+            color: #bdbddd;
+            margin-bottom: 6px;
+        }
+        .team-desc-card {
+            font-size: 1rem;
+            color: #e0e0f0;
+        }
+        .join-block {
+            text-align: center;
+            margin: 60px 0 0 0;
+        }
+        .join-block h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .join-block p {
+            color: #bdbddd;
+            font-size: 1.1rem;
+        }
+        @media (max-width: 900px) {
+            .team-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+            .team-card {
+                max-width: 90vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="menu"></div>
+    <script>
+      fetch('menu.html')
+        .then(res => res.text())
+        .then(html => {
+          document.getElementById('menu').innerHTML = html;
+          updateMenu();
+        });
+
+      function updateMenu() {
+        const token = localStorage.getItem('token');
+        if (token) {
+          document.querySelectorAll('.menu-auth').forEach(el => el.style.display = 'none');
+          document.querySelectorAll('.menu-profile').forEach(el => el.style.display = 'inline-block');
+        } else {
+          document.querySelectorAll('.menu-auth').forEach(el => el.style.display = 'inline-block');
+          document.querySelectorAll('.menu-profile').forEach(el => el.style.display = 'none');
+        }
+      }
+    </script>
+    <h1>КОМАНДА ПРОЕКТА</h1>
+    <div class="team-desc">
+        Наша команда профессионалов, работающих для вашего будущего
+    </div>
+    <div class="team-grid">
+        <div class="team-card">
+            <div class="team-avatar">НС</div>
+            <div class="team-name">Никита Сердюков</div>
+            <div class="team-role">Главный разработчик</div>
+            <div class="team-desc-card">
+                Отвечает за архитектуру проекта и внедрение новых технологий.
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">ЮМ</div>
+            <div class="team-name">Юмачиков Марат</div>
+            <div class="team-role">Креативный дизайнер</div>
+            <div class="team-desc-card">
+                Создаёт визуальную идентичность проекта и пользовательские интерфейсы.
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">НА</div>
+            <div class="team-name">Новосад Анастасия</div>
+            <div class="team-role">Руководитель контент-отдела</div>
+            <div class="team-desc-card">
+                Отвечает за поиск информации и создание текстового наполнения.
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="team-avatar">МФ</div>
+            <div class="team-name">Митлашевский Фёдор</div>
+            <div class="team-role">Главный спикер проекта</div>
+            <div class="team-desc-card">
+                Проводит презентации и представляет проект на публичных мероприятиях.
+            </div>
+        </div>
+    </div>
+    <div class="join-block">
+        <h2>Присоединяйтесь к нашему проекту!</h2>
+        <p>
+            Если вы хотите стать частью нашей команды или просто узнать больше о FUTURE TALK, свяжитесь с нами.<br>
+            <b>Ваше будущее начинается здесь — с FUTURE TALK!</b>
+        </p>
+    </div>
+</body>
+</html> 
